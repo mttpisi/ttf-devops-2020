@@ -26,6 +26,7 @@ After that, the students will use this repository, their own fork, as a single r
 - Vagrant (optional)
 
 ## Working Agreements
+- lavoro in coppia
 
 
 ## Vagrant
