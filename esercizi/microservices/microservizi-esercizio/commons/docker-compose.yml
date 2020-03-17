@@ -9,24 +9,24 @@ services:
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-     depends_on:
-     - hexToRgb
-     - hslToHex
+    depends_on:
+      - hex_to_rgb
+      - hsl_to_hex
 
-  hexToRgb:
-    image: hexToRgb
+  hex_to_rgb:
+    image: hex_to_rgb
     restart: "no"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.hexToRgb.rule=PathPrefix(`/hexToRgb`)"
-      - "traefik.http.routers.hexToRgb.middlewares=hexToRgb-stripprefix"
-      - "traefik.http.middlewares.hexToRgb.stripprefix.prefixes=/hexToRgb"
+      - "traefik.http.routers.hex_to_rgb.rule=PathPrefix(`/hex_to_rgb`)"
+      - "traefik.http.routers.hex_to_rgb.middlewares=hex_to_rgb-stripprefix"
+      - "traefik.http.middlewares.hex_to_rgb.stripprefix.prefixes=/hex_to_rgb"
 
-  hslToRgb:
-    image: hslToHex
+  hsl_to_hex:
+    image: hsl_to_hex
     restart: "no"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.HslToHex.rule=PathPrefix(`/hslToRgb`)"
-      - "traefik.http.routers.hslToRgb.middlewares=hslToRgb-stripprefix"
-      - "traefik.http.middlewares.hslToRgb-stripprefix.stripprefix.prefixes=/hslToRgb"
+      - "traefik.http.routers.hsl_to_hex.rule=PathPrefix(`/hsl_to_hex`)"
+      - "traefik.http.routers.hsl_to_hex.middlewares=hsl_to_hex-stripprefix"
+      - "traefik.http.middlewares.hsl_to_hex-stripprefix.stripprefix.prefixes=/hsl_to_hex"
