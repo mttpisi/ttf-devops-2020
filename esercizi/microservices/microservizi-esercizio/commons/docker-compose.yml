@@ -9,14 +9,24 @@ services:
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-#    depends_on:
-#      - microservice-example
+     depends_on:
+     - hexToRgb
+     - hslToHex
 
-#  microservice-example:
-#    image: microservice-example
-#    restart: "no"
-#    labels:
-#      - "traefik.enable=true"
-#      - "traefik.http.routers.microservice-example.rule=PathPrefix(`/microservice-example`)"
-#      - "traefik.http.routers.microservice-example.middlewares=microservice-example-stripprefix"
-#      - "traefik.http.middlewares.microservice-example-stripprefix.stripprefix.prefixes=/microservice-example"
+  hexToRgb:
+    image: hexToRgb
+    restart: "no"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hexToRgb.rule=PathPrefix(`/hexToRgb`)"
+      - "traefik.http.routers.hexToRgb.middlewares=hexToRgb-stripprefix"
+      - "traefik.http.middlewares.hexToRgb.stripprefix.prefixes=/hexToRgb"
+
+  hslToRgb:
+    image: hslToHex
+    restart: "no"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.HslToHex.rule=PathPrefix(`/hslToRgb`)"
+      - "traefik.http.routers.hslToRgb.middlewares=hslToRgb-stripprefix"
+      - "traefik.http.middlewares.hslToRgb-stripprefix.stripprefix.prefixes=/hslToRgb"
